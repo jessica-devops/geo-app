@@ -14,5 +14,12 @@ pipeline {
                 sh 'mvn package'
             }
         }
+        stage('upload artifact'){
+            steps{
+                sh 'curl -uadmin:AP7sErwo11qeXL295T6doA3daaj -T \
+                 target/bio*.jar \
+                  "http://54.89.119.58:8081/artifactory/geolocation/geo/bio_${BUILD_ID}.jar"'
+            }
+        }
     }
 }
